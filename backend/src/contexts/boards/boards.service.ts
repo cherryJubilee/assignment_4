@@ -29,6 +29,9 @@ class BoardService {
       where: {
         boardId: boardId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     //console.log("getPosts:", posts);
     res.json(posts);

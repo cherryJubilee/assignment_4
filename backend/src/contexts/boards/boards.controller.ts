@@ -2,7 +2,6 @@ import { Router } from "express";
 import boardService from "./boards.service";
 
 const boardController = Router();
-
 boardController.get("/recent/:boardId", boardService.getRecentPosts);
 boardController.get("/:boardId", boardService.getPosts);
 boardController.get("/:boardId/:postId", boardService.getPost);
