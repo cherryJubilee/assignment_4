@@ -2,8 +2,7 @@ import { Router } from "express";
 import likeService from "./likes.service";
 
 const likeController = Router();
-likeController.get("/", likeService.getLikedPosts);
-likeController.post("/like", likeService.likePost);
-likeController.post("/unlike", likeService.unlikePost);
+likeController.get("/likes", likeService.getLikedPosts);
+likeController.post("/:postId/like", likeService.likePost);
 
 export default likeController;

@@ -12,21 +12,20 @@ async function authenticator(req: Request, res: Response, next: NextFunction) {
   const accessToken = req.headers.authorization?.split("Bearer ")[1];
 
   if (!accessToken) {
-    console.log("401 에러 발생");
+    console.log("401 에러 발생-1");
     return res.sendStatus(401);
   }
 
   // 여권 유효성 검사 (jwt.verify)
   try {
     const decodedToken = jwt.verify(accessToken, JWT_SECRET_KEY);
-    console.log("decodedToken", decodedToken);
 
     if (
       !decodedToken ||
       typeof decodedToken !== "object" ||
-      !decodedToken.sub
+      !decodedToken.email
     ) {
-      console.log("401 에러 발생");
+      console.log("401 에러 발생-2");
       return res.sendStatus(401);
     }
 
