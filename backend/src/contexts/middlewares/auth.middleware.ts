@@ -15,6 +15,7 @@ async function authenticator(req: Request, res: Response, next: NextFunction) {
 
   // 여권 존재 여부 검사
   const accessToken = req.headers.authorization?.split("Bearer ")[1];
+  console.log(accessToken);
 
   if (!accessToken) {
     console.log("401 에러 발생-1");
