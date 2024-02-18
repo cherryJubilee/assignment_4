@@ -2,6 +2,25 @@ import { Request, Response } from "express";
 import prismaClient from "../../prisma/client.prisma";
 
 class BoardService {
+  async getRecentPosts(req: Request, res: Response) {
+    try {
+      const boardId = Number(req.params.boardId);
+      const recentPosts = await prismaClient.post.findMany({
+        where: {
+          boardId: boardId, // 게시판 ID에 따라 글 필터링
+        },
+        take: 10,
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      res.status(200).json(recentPosts);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
   async getPosts(req: Request, res: Response) {
     const boardId = Number(req.params.boardId);
     console.log("getPosts-boardId:", boardId);

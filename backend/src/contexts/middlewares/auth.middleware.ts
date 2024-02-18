@@ -3,7 +3,12 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../../config";
 import prismaClient from "../../prisma/client.prisma";
 
-const noAuthRequiredRoutes = ["/auth/sign-up", "/auth/log-in"];
+const noAuthRequiredRoutes = [
+  "/auth/sign-up",
+  "/auth/log-in",
+  "/board/1",
+  "/board/2",
+];
 
 async function authenticator(req: Request, res: Response, next: NextFunction) {
   if (noAuthRequiredRoutes.includes(req.url)) return next();
